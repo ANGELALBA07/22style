@@ -23,6 +23,12 @@ En "🏠 Textos generales" ahora también puedes:
   derecha, visible en toda la web) y en el aviso de pago por Yape/Plin del checkout.
   Cambiar el número una sola vez actualiza los 3 lugares a la vez.
 
+## Vista previa en vivo
+Al editar cualquier producto, testimonio o pregunta, vas a ver a la derecha
+una vista previa que se parece a como se ve realmente en tu web (con foto,
+colores, precios tachados, etc.) — no solo texto plano. Se actualiza mientras
+escribes.
+
 ## Pasos para activarlo (una sola vez)
 
 1. **Sube esta carpeta a GitHub**
