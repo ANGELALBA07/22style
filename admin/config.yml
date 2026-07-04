@@ -1,0 +1,35 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "es"
+
+collections:
+  - name: "products"
+    label: "Catálogo de productos"
+    files:
+      - file: "data/products.json"
+        label: "Productos de la tienda"
+        name: "catalogo"
+        fields:
+          - label: "Productos"
+            name: "products"
+            widget: "list"
+            summary: "{{name}} — S/. {{price}}"
+            fields:
+              - {label: "ID (único, sin espacios)", name: "id", widget: "string"}
+              - {label: "Nombre del producto", name: "name", widget: "string"}
+              - {label: "Etiqueta pequeña", name: "tag", widget: "string", required: false}
+              - {label: "Texto del sello (ej. NUEVO, -30%)", name: "badge", widget: "string", required: false}
+              - {label: "Precio actual (S/.)", name: "price", widget: "number", value_type: "float"}
+              - {label: "Precio anterior tachado (S/.)", name: "old", widget: "number", value_type: "float", required: false}
+              - label: "Colores disponibles"
+                name: "colors"
+                widget: "list"
+                required: false
+                field: {label: "Color (código hex, ej. #241318)", name: "color", widget: "string"}
+              - {label: "Descripción corta", name: "desc", widget: "text", required: false}
+              - {label: "Foto del producto", name: "image", widget: "image", required: false, media_library: {config: {multiple: false}}}

@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Faja Body Reloj de Arena",
+      "tag": "Más vendido",
+      "badge": "MÁS VENDIDO",
+      "price": 129,
+      "old": 169,
+      "colors": ["#241318", "#C9A27A"],
+      "desc": "Compresión alta en abdomen y cintura.",
+      "image": ""
+    },
+    {
+      "id": "p2",
+      "name": "Cinturilla Extreme Doble Capa",
+      "tag": "Nuevo",
+      "badge": "NUEVO",
+      "price": 89,
+      "old": 112,
+      "colors": ["#241318"],
+      "desc": "Doble capa para un efecto reloj de arena inmediato.",
+      "image": ""
+    },
+    {
+      "id": "p3",
+      "name": "Body Moldeador Manga Cero",
+      "tag": "Sin costuras",
+      "badge": "-30%",
+      "price": 99,
+      "old": 129,
+      "colors": ["#241318", "#8a6a52", "#C9A27A"],
+      "desc": "Ultrafino, invisible bajo cualquier prenda.",
+      "image": ""
+    },
+    {
+      "id": "p4",
+      "name": "Short Faja Levanta Pompis",
+      "tag": "Premium",
+      "badge": "PREMIUM",
+      "price": 95,
+      "old": 120,
+      "colors": ["#241318", "#C9A27A"],
+      "desc": "Realza y moldea sin marcar costuras.",
+      "image": ""
+    },
+    {
+      "id": "p5",
+      "name": "Body Encaje Premium",
+      "tag": "Edición limitada",
+      "badge": "POCO STOCK",
+      "price": 149,
+      "old": 189,
+      "colors": ["#241318"],
+      "desc": "Diseño exclusivo en encaje con forro moldeador.",
+      "image": ""
+    },
+    {
+      "id": "p6",
+      "name": "Faja Postparto Confort",
+      "tag": "Recomendado",
+      "badge": "RECOMENDADO",
+      "price": 110,
+      "old": 140,
+      "colors": ["#241318", "#8a6a52"],
+      "desc": "Soporte suave ideal para la etapa post parto.",
+      "image": ""
+    }
+  ]
+}
