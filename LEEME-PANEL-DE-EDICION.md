@@ -29,6 +29,15 @@ una vista previa que se parece a como se ve realmente en tu web (con foto,
 colores, precios tachados, etc.) — no solo texto plano. Se actualiza mientras
 escribes.
 
+## Editor de productos más visual
+- Cada producto aparece **abierto de una vez** (no hay que hacer clic para
+  expandirlo), y lo primero que ves es la **foto**.
+- Los colores ahora se eligen con un **selector visual de paleta** — tocas
+  el cuadrito de color y eliges de una rueda de colores, ya no escribes
+  códigos hexadecimales a mano.
+- En la lista de productos colapsada, cada uno muestra "sello · nombre — precio"
+  para identificarlos rápido.
+
 ## Pasos para activarlo (una sola vez)
 
 1. **Sube esta carpeta a GitHub**

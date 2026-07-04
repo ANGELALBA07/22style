@@ -36,21 +36,23 @@ collections:
           - label: "Productos"
             name: "products"
             widget: "list"
-            summary: "{{name}} — S/. {{price}}"
+            collapsed: false
+            summary: "{{fields.badge}} · {{fields.name}} — S/. {{fields.price}}"
             fields:
-              - {label: "ID (único, sin espacios)", name: "id", widget: "string"}
+              - {label: "Foto del producto", name: "image", widget: "image", required: false, media_library: {config: {multiple: false}}, hint: "Arrastra o elige la foto real. Se ve apenas la subes."}
               - {label: "Nombre del producto", name: "name", widget: "string"}
-              - {label: "Etiqueta pequeña", name: "tag", widget: "string", required: false}
-              - {label: "Texto del sello (ej. NUEVO, -30%)", name: "badge", widget: "string", required: false}
               - {label: "Precio actual (S/.)", name: "price", widget: "number", value_type: "float"}
               - {label: "Precio anterior tachado (S/.)", name: "old", widget: "number", value_type: "float", required: false}
+              - {label: "Texto del sello (ej. NUEVO, -30%)", name: "badge", widget: "string", required: false}
+              - {label: "Etiqueta pequeña", name: "tag", widget: "string", required: false}
               - label: "Colores disponibles"
                 name: "colors"
                 widget: "list"
                 required: false
-                field: {label: "Color (código hex, ej. #241318)", name: "color", widget: "string"}
+                hint: "Toca el cuadro de color para elegirlo con la paleta visual."
+                field: {label: "Color", name: "color", widget: "color", enableAlpha: false}
               - {label: "Descripción corta", name: "desc", widget: "text", required: false}
-              - {label: "Foto del producto", name: "image", widget: "image", required: false, media_library: {config: {multiple: false}}}
+              - {label: "ID (único, sin espacios — no lo cambies si no es necesario)", name: "id", widget: "string"}
 
   - name: "testimonials"
     label: "💬 Testimonios"
