@@ -385,6 +385,20 @@
   }
   .toast.show{opacity:1; transform:translate(-50%,0);}
 
+  .logo img{height:34px; width:auto; display:block;}
+  @media (max-width:640px){.logo img{height:28px;}}
+
+  .wa-float{
+    position:fixed; right:22px; bottom:22px; z-index:110;
+    width:58px; height:58px; border-radius:50%;
+    background:#25D366; color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    transition:transform .2s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  @media (max-width:640px){.wa-float{width:52px; height:52px; right:16px; bottom:16px;}}
+
   ::-webkit-scrollbar{width:8px; height:8px;}
   ::-webkit-scrollbar-thumb{background:var(--blush); }
 
@@ -395,11 +409,11 @@
 </head>
 <body>
 
-<div class="topbar">ENVÍO GRATIS DESDE 2 UNIDADES · PAGO CONTRAENTREGA EN LIMA · GARANTÍA DE 60 DÍAS</div>
+<div class="topbar" id="topbarText">ENVÍO GRATIS DESDE 2 UNIDADES · PAGO CONTRAENTREGA EN LIMA · GARANTÍA DE 60 DÍAS</div>
 
 <header class="site">
   <div class="container nav-row">
-    <a href="#inicio" class="logo">
+    <a href="#inicio" class="logo" id="headerLogo">
       <span class="emblem" aria-hidden="true">
         <svg width="26" height="30" viewBox="0 0 26 30" fill="none">
           <path d="M3 2 C3 10 9 13 9 15 C9 17 3 20 3 28" stroke="#4A0E1F" stroke-width="1.6" fill="none"/>
@@ -435,9 +449,9 @@
   <section class="hero" id="inicio" style="padding-bottom:0;">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Fajas &amp; moldeadores · Hecho para tu figura</p>
-        <h1>Siéntete <em>segura</em> en tu propia piel.</h1>
-        <p class="lead">Moldeadores de compresión que acompañan tu cuerpo todo el día: transpirables, sin costuras marcadas y con la silueta reloj de arena que buscas.</p>
+        <p class="eyebrow" id="heroEyebrow">Fajas &amp; moldeadores · Hecho para tu figura</p>
+        <h1 id="heroTitle">Siéntete <em>segura</em> en tu propia piel.</h1>
+        <p class="lead" id="heroLead">Moldeadores de compresión que acompañan tu cuerpo todo el día: transpirables, sin costuras marcadas y con la silueta reloj de arena que buscas.</p>
         <div class="hero-ctas">
           <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
           <a href="#beneficios" class="btn btn-ghost">Por qué 22 Style</a>
@@ -552,7 +566,7 @@
     <div class="container">
       <h2>Encuentra tu talla ideal</h2>
       <p>Escríbenos por WhatsApp y una asesora te ayuda a elegir el modelo y la talla perfecta.</p>
-      <a href="https://wa.me/51900000000?text=Hola%2C%20quiero%20saber%20mi%20talla%20ideal" target="_blank" class="btn btn-primary">Hablar con una asesora</a>
+      <a href="https://wa.me/51900000000?text=Hola%2C%20quiero%20saber%20mi%20talla%20ideal" target="_blank" class="btn btn-primary" id="whatsappCta">Hablar con una asesora</a>
     </div>
   </section>
 
@@ -591,7 +605,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="logo" style="color:var(--ivory); margin-bottom:14px;">
+        <div class="logo" style="color:var(--ivory); margin-bottom:14px;" id="footerLogo">
           <span class="emblem" aria-hidden="true">
             <svg width="22" height="26" viewBox="0 0 26 30" fill="none">
               <path d="M3 2 C3 10 9 13 9 15 C9 17 3 20 3 28" stroke="#E9CAB9" stroke-width="1.6" fill="none"/>
@@ -629,7 +643,7 @@
       <div>
         <h4>Síguenos</h4>
         <ul>
-          <li><a href="https://www.tiktok.com/@fajas_22style" target="_blank">TikTok — @fajas_22style</a></li>
+          <li><a href="https://www.tiktok.com/@fajas_22style" target="_blank" id="footerTiktok">TikTok — @fajas_22style</a></li>
           <li><a href="#">Instagram</a></li>
           <li><a href="#">Facebook</a></li>
         </ul>
@@ -671,6 +685,10 @@
   </div>
 </div>
 
+<a href="#" target="_blank" class="wa-float" id="waFloat" aria-label="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.92C22 6.45 17.5 2 12.04 2Zm5.8 14.1c-.24.68-1.42 1.32-1.96 1.4-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.14.44.2.51.32.06.11.06.68-.18 1.36Z"/></svg>
+</a>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -699,7 +717,20 @@ const DEFAULT_PRODUCTS = [
   {id:'p6', name:'Faja Postparto Confort', tag:'Recomendado', badge:'RECOMENDADO', price:110, old:140, colors:['#241318','#8a6a52'], desc:'Soporte suave ideal para la etapa post parto.', image:''}
 ];
 
-const TESTIMONIALS = [
+const DEFAULT_SITE = {
+  logoUrl: '',
+  topbar: 'ENVÍO GRATIS DESDE 2 UNIDADES · PAGO CONTRAENTREGA EN LIMA · GARANTÍA DE 60 DÍAS',
+  heroEyebrow: 'Fajas & moldeadores · Hecho para tu figura',
+  heroTitleBefore: 'Siéntete',
+  heroTitleEm: 'segura',
+  heroTitleAfter: 'en tu propia piel.',
+  heroLead: 'Moldeadores de compresión que acompañan tu cuerpo todo el día: transpirables, sin costuras marcadas y con la silueta reloj de arena que buscas.',
+  whatsappNumber: '51900000000',
+  whatsappMessage: 'Hola, quiero saber mi talla ideal',
+  tiktokUrl: 'https://www.tiktok.com/@fajas_22style'
+};
+
+const DEFAULT_TESTIMONIALS = [
   {name:'Natalia Herrera', text:'Llegó puntual y la compresión es justo como esperaba. Se nota la calidad.'},
   {name:'Laura Gómez', text:'La he lavado muchas veces y sigue firme. No pierde la forma.'},
   {name:'Carolina Ríos', text:'Prefiero pagar un poco más por algo que realmente dure. Vale cada sol.'},
@@ -707,7 +738,7 @@ const TESTIMONIALS = [
   {name:'Pamela García', text:'Tengo varios modelos ya, todos me quedaron perfectos. Recomendadísima.'}
 ];
 
-const FAQS = [
+const DEFAULT_FAQS = [
   {q:'¿Qué métodos de pago aceptan?', a:'Tarjeta de crédito o débito, Yape, Plin, transferencia y pago contraentrega en Lima.'},
   {q:'¿El envío tiene costo?', a:'El envío es gratuito a partir de 2 unidades. Para 1 unidad, el costo se calcula en el checkout.'},
   {q:'¿Cuánto tarda la entrega?', a:'En Lima, menos de 24 horas. En provincia, de 1 a 2 días útiles.'},
@@ -736,6 +767,50 @@ function productMedia(p){
       <div style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">${productIcon(p.colors)}</div>`;
   }
   return productIcon(p.colors);
+}
+
+/* ============ SITE CONTENT LOADERS (hero, topbar, whatsapp, testimonios, faq) ============ */
+let SITE_DATA = DEFAULT_SITE;
+
+function applySiteData(site){
+  SITE_DATA = site;
+
+  document.getElementById('topbarText').textContent = site.topbar;
+  document.getElementById('heroEyebrow').textContent = site.heroEyebrow;
+  document.getElementById('heroTitle').innerHTML = `${site.heroTitleBefore} <em>${site.heroTitleEm}</em> ${site.heroTitleAfter}`;
+  document.getElementById('heroLead').textContent = site.heroLead;
+
+  const waLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+  document.getElementById('whatsappCta').href = waLink;
+  document.getElementById('waFloat').href = waLink;
+
+  const tiktokLink = document.getElementById('footerTiktok');
+  tiktokLink.href = site.tiktokUrl;
+  tiktokLink.textContent = site.tiktokUrl.includes('@') ? 'TikTok — @'+site.tiktokUrl.split('@')[1] : 'TikTok';
+
+  if(site.logoUrl){
+    document.getElementById('headerLogo').innerHTML = `<img src="${site.logoUrl}" alt="22 Style">`;
+    document.getElementById('footerLogo').innerHTML = `<img src="${site.logoUrl}" alt="22 Style">`;
+  }
+}
+
+async function loadJson(path){
+  try{
+    const res = await fetch(path, {cache:'no-store'});
+    if(res.ok) return await res.json();
+  }catch(err){ /* archivo no disponible aún, se usa el valor por defecto */ }
+  return null;
+}
+
+async function loadSiteContent(){
+  const site = await loadJson('data/site.json');
+  applySiteData(site || DEFAULT_SITE);
+
+  const testiData = await loadJson('data/testimonials.json');
+  renderTestimonials((testiData && testiData.testimonials) || DEFAULT_TESTIMONIALS);
+
+  const faqData = await loadJson('data/faq.json');
+  renderFaqs((faqData && faqData.faqs) || DEFAULT_FAQS);
 }
 let cart = []; // {id, qty}
 
@@ -835,40 +910,46 @@ async function loadCatalog(){
 
 /* ============ RENDER TESTIMONIALS ============ */
 const testiTrack = document.getElementById('testiTrack');
-TESTIMONIALS.forEach(t=>{
-  const el = document.createElement('div');
-  el.className='testi-card';
-  el.innerHTML = `
-    <div class="stars">★★★★★</div>
-    <p>"${t.text}"</p>
-    <div class="testi-name"><span class="avatar">${t.name[0]}</span> ${t.name}</div>
-  `;
-  testiTrack.appendChild(el);
-});
+function renderTestimonials(list){
+  testiTrack.innerHTML = '';
+  list.forEach(t=>{
+    const el = document.createElement('div');
+    el.className='testi-card';
+    el.innerHTML = `
+      <div class="stars">★★★★★</div>
+      <p>"${t.text}"</p>
+      <div class="testi-name"><span class="avatar">${t.name[0]}</span> ${t.name}</div>
+    `;
+    testiTrack.appendChild(el);
+  });
+}
 
 /* ============ RENDER FAQ ============ */
 const faqList = document.getElementById('faqList');
-FAQS.forEach(f=>{
-  const item = document.createElement('div');
-  item.className='faq-item';
-  item.innerHTML = `
-    <button class="faq-q"><span>${f.q}</span><span class="plus">+</span></button>
-    <div class="faq-a"><p>${f.a}</p></div>
-  `;
-  item.querySelector('.faq-q').addEventListener('click', ()=>{
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>{
-      i.classList.remove('open');
-      i.querySelector('.faq-a').style.maxHeight = null;
+function renderFaqs(list){
+  faqList.innerHTML = '';
+  list.forEach(f=>{
+    const item = document.createElement('div');
+    item.className='faq-item';
+    item.innerHTML = `
+      <button class="faq-q"><span>${f.q}</span><span class="plus">+</span></button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    `;
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!wasOpen){
+        item.classList.add('open');
+        const a = item.querySelector('.faq-a');
+        a.style.maxHeight = a.scrollHeight + 20 + 'px';
+      }
     });
-    if(!wasOpen){
-      item.classList.add('open');
-      const a = item.querySelector('.faq-a');
-      a.style.maxHeight = a.scrollHeight + 20 + 'px';
-    }
+    faqList.appendChild(item);
   });
-  faqList.appendChild(item);
-});
+}
 
 /* ============ CART LOGIC ============ */
 function addToCart(id){
@@ -1049,8 +1130,8 @@ function openCheckout(){
       <div class="pay-panel" data-panel="yape">
         <div class="form-row" style="text-align:center; background:#fff; border:1.5px dashed var(--line); padding:20px;">
           <p style="font-size:13px; color:var(--ink-soft); margin-bottom:8px;">Escanea el QR o yapea/plinea al número:</p>
-          <p style="font-weight:800; color:var(--merlot); font-size:16px;">+51 900 000 000</p>
-          <p style="font-size:12px; color:var(--ink-soft); margin-top:8px;">Envía tu constancia por WhatsApp al confirmar.</p>
+          <p style="font-weight:800; color:var(--merlot); font-size:16px;">+${SITE_DATA.whatsappNumber}</p>
+          <p style="font-size:12px; color:var(--ink-soft); margin-top:8px;">Envía tu constancia por <a href="https://wa.me/${SITE_DATA.whatsappNumber}" target="_blank" style="color:var(--merlot); font-weight:700; text-decoration:underline;">WhatsApp</a> al confirmar.</p>
         </div>
       </div>
 
@@ -1121,6 +1202,7 @@ function showSuccess(total){
 
 /* init */
 loadCatalog();
+loadSiteContent();
 renderCart();
 
 /* ==========================================================================

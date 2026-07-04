@@ -8,8 +8,26 @@ public_folder: "/images/uploads"
 locale: "es"
 
 collections:
+  - name: "site"
+    label: "🏠 Textos generales del sitio"
+    files:
+      - file: "data/site.json"
+        label: "Banner principal, WhatsApp y redes"
+        name: "site_settings"
+        fields:
+          - {label: "Logo de la tienda (imagen)", name: "logoUrl", widget: "image", required: false, hint: "Sube tu logo real. Si lo dejas vacío, se muestra el logo de texto por defecto."}
+          - {label: "Texto de la barra superior", name: "topbar", widget: "string"}
+          - {label: "Frase pequeña sobre el título (hero)", name: "heroEyebrow", widget: "string"}
+          - {label: "Título — parte 1", name: "heroTitleBefore", widget: "string"}
+          - {label: "Título — palabra destacada", name: "heroTitleEm", widget: "string"}
+          - {label: "Título — parte 2", name: "heroTitleAfter", widget: "string"}
+          - {label: "Texto debajo del título", name: "heroLead", widget: "text"}
+          - {label: "Número de WhatsApp (sin +, ej. 51900000000)", name: "whatsappNumber", widget: "string"}
+          - {label: "Mensaje predeterminado de WhatsApp", name: "whatsappMessage", widget: "string"}
+          - {label: "Link de TikTok", name: "tiktokUrl", widget: "string"}
+
   - name: "products"
-    label: "Catálogo de productos"
+    label: "🛍️ Productos"
     files:
       - file: "data/products.json"
         label: "Productos de la tienda"
@@ -33,3 +51,33 @@ collections:
                 field: {label: "Color (código hex, ej. #241318)", name: "color", widget: "string"}
               - {label: "Descripción corta", name: "desc", widget: "text", required: false}
               - {label: "Foto del producto", name: "image", widget: "image", required: false, media_library: {config: {multiple: false}}}
+
+  - name: "testimonials"
+    label: "💬 Testimonios"
+    files:
+      - file: "data/testimonials.json"
+        label: "Opiniones de clientas"
+        name: "testimonios"
+        fields:
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - {label: "Nombre de la clienta", name: "name", widget: "string"}
+              - {label: "Comentario", name: "text", widget: "text"}
+
+  - name: "faq"
+    label: "❓ Preguntas frecuentes"
+    files:
+      - file: "data/faq.json"
+        label: "Preguntas y respuestas"
+        name: "preguntas"
+        fields:
+          - label: "Preguntas"
+            name: "faqs"
+            widget: "list"
+            summary: "{{q}}"
+            fields:
+              - {label: "Pregunta", name: "q", widget: "string"}
+              - {label: "Respuesta", name: "a", widget: "text"}
