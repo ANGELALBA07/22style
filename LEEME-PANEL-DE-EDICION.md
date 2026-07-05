@@ -3,6 +3,36 @@
 Esta versión reemplaza COMPLETAMENTE la anterior: ya tiene tus 7 productos
 reales, fotos optimizadas, tu logo, y selector de color + talla con stock.
 
+## ⚠️ Corrección importante de esta versión
+Arreglé 2 problemas:
+1. **La vista previa del panel no se veía como el diseño** — era un error de
+   configuración interno (el nombre no coincidía). Ya está corregido.
+2. **El logo se veía muy pequeño** — ya lo agrandé.
+
+También confirmé que **tu web publicada (22style.netlify.app) todavía tiene
+la versión vieja** — sin productos, sin logo. Esto pasa porque el repositorio
+de GitHub no tiene aún estos archivos nuevos. Sigue "Reemplazo limpio" abajo.
+
+## Reemplazo limpio (evita los problemas de archivos sueltos de antes)
+1. Ve a tu repositorio en GitHub y borra **todo** el contenido actual (o borra
+   el repositorio completo en Settings → Delete this repository, y créalo de
+   nuevo con el mismo nombre).
+2. Descomprime este ZIP. Debes ver, en una sola carpeta: `index.html`,
+   `admin/`, `data/`, `images/`, y este LÉEME.
+3. En GitHub, con el repositorio vacío, clic en **"Add file" → "Upload files"**.
+4. Abre esa carpeta descomprimida en tu explorador de archivos, selecciona
+   **todo su contenido** (Ctrl+A) — archivos y carpetas — y arrástralo de una
+   sola vez a la ventana de GitHub.
+5. Confirma en la vista previa que aparezcan las carpetas `admin`, `data`,
+   `images` (no archivos sueltos con esos nombres).
+6. Clic en **"Commit changes"**.
+7. Espera 1-2 minutos a que Netlify vuelva a publicar.
+8. Entra a `https://22style.netlify.app` con **Ctrl+Shift+R** (refresco sin
+   caché) y confirma que se vean los 7 productos, el logo grande, y los
+   testimonios/preguntas.
+9. Entra a `https://22style.netlify.app/admin` (también con refresco forzado)
+   y confirma que el panel de productos se vea con foto, colores y tallas.
+
 ## Qué cambió
 - **7 productos reales** cargados con sus fotos: Body Coquette, Body Suite,
   Body Complete, Body Premium Lace, Body Premium Manga Corta, Body Premium
