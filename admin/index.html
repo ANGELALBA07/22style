@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de edición — 22 Style</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Incluye el motor del panel de edición (Decap CMS) -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+  <!-- ============ VISTAS PREVIAS EN VIVO, con el estilo real de la tienda ============ -->
+  <script>
+    var PALETTE_CSS =
+      "@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;600;700;800&display=swap');" +
+      "body{font-family:'Manrope',sans-serif; background:#FBF4EE; color:#241318; padding:0; margin:0;}" +
+      "h1,h2,h3,h4{font-family:'Fraunces',serif; color:#4A0E1F; margin:0 0 8px;}" +
+      ".preview-wrap{padding:24px;}" +
+      ".preview-wrap h1{font-size:22px; margin-bottom:20px;}" +
+      ".preview-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px;}" +
+      ".preview-card{background:#fff; border:1px solid rgba(74,14,31,0.14); overflow:hidden;}" +
+      ".preview-card img{width:100%; aspect-ratio:4/5; object-fit:cover; display:block;}" +
+      ".preview-noimg{width:100%; aspect-ratio:4/5; background:#F3E2D6; display:flex; align-items:center; justify-content:center; font-size:32px;}" +
+      ".preview-badge{display:inline-block; margin:10px 12px 0; background:#4A0E1F; color:#FBF4EE; font-size:10px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:4px 8px;}" +
+      ".preview-card h3{font-size:15px; margin:8px 12px 4px;}" +
+      ".preview-price{margin:0 12px 8px; display:flex; gap:8px; align-items:baseline;}" +
+      ".preview-price .now{font-weight:800; color:#4A0E1F; font-size:15px;}" +
+      ".preview-price .old{font-size:12px; color:#6b5a5f; text-decoration:line-through;}" +
+      ".preview-desc{font-size:12px; color:#6b5a5f; margin:0 12px 14px;}" +
+      ".preview-testi{background:#fff; border:1px solid rgba(74,14,31,0.14); padding:16px; margin-bottom:14px; max-width:420px;}" +
+      ".preview-testi .stars{color:#B8895A; margin-bottom:8px;}" +
+      ".preview-testi p{font-style:italic; margin-bottom:10px;}" +
+      ".preview-faq{border-bottom:1px solid rgba(74,14,31,0.14); padding:14px 0;}" +
+      ".preview-faq h4{font-size:15px;}" +
+      ".preview-faq p{font-size:13px; color:#6b5a5f; margin:0;}" +
+      ".preview-hero{padding:0;}" +
+      ".preview-topbar{background:#2E0810; color:#F3E2D6; text-align:center; font-size:11px; font-weight:700; letter-spacing:0.06em; padding:10px;}" +
+      ".preview-hero-body{padding:28px;}" +
+      ".preview-logo{height:36px; margin-bottom:16px;}" +
+      ".preview-eyebrow{font-size:11px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:#B8895A; margin-bottom:8px;}" +
+      ".preview-title{font-size:34px; margin-bottom:14px;}" +
+      ".preview-title em{color:#B8895A; font-style:italic; font-weight:600;}" +
+      ".preview-lead{color:#6b5a5f; max-width:400px; margin-bottom:18px;}" +
+      ".preview-btn{display:inline-block; background:#4A0E1F; color:#FBF4EE; font-size:13px; font-weight:700; padding:12px 20px;}";
+
+    CMS.registerPreviewStyle(PALETTE_CSS, { raw: true });
+
+    /* ---- Vista previa: Productos (foto principal + color + talla/stock) ---- */
+    var ProductsPreview = createClass({
+      render: function () {
+        var getAsset = this.props.getAsset;
+        var items = this.props.widgetsFor('products') || [];
+        return h('div', { className: 'preview-wrap' },
+          h('h1', {}, 'Catálogo — así se ve en la web'),
+          h('div', { className: 'preview-grid' },
+            items.map(function (item, i) {
+              var code = item.getIn(['data', 'code']) || '';
+              var name = item.getIn(['data', 'name']) || '';
+              var price = item.getIn(['data', 'price']);
+              var old = item.getIn(['data', 'old']);
+              var badge = item.getIn(['data', 'badge']) || '';
+              var colors = item.getIn(['data', 'colors']);
+              var firstImage = colors && colors.size ? colors.getIn([0, 'image']) : null;
+              var asset = firstImage ? getAsset(firstImage) : null;
+
+              return h('div', { className: 'preview-card', key: i },
+                asset
+                  ? h('img', { src: asset.toString() })
+                  : h('div', { className: 'preview-noimg' }, '📷 Sin foto'),
+                h('div', { style: { padding: '12px' } },
+                  badge ? h('span', { className: 'preview-badge', style: { margin: '0 0 8px' } }, badge) : null,
+                  h('div', { style: { fontSize: '11px', color: '#6b5a5f', fontFamily: 'monospace', marginTop: '4px' } }, code),
+                  h('h3', { style: { margin: '2px 0 6px' } }, name),
+                  h('div', { className: 'preview-price' },
+                    h('span', { className: 'now' }, price != null ? 'S/. ' + price : ''),
+                    old ? h('span', { className: 'old' }, 'S/. ' + old) : null
+                  ),
+                  colors ? h('div', { style: { marginTop: '12px', borderTop: '1px solid rgba(74,14,31,0.12)', paddingTop: '10px' } },
+                    colors.map(function (color, ci) {
+                      var colorName = color.get('name');
+                      var hex = color.get('hex');
+                      var sizes = color.get('sizes');
+                      return h('div', { key: ci, style: { marginBottom: '10px' } },
+                        h('div', { style: { display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' } },
+                          h('span', { style: { width: '13px', height: '13px', borderRadius: '50%', background: hex, display: 'inline-block', border: '1px solid rgba(0,0,0,0.2)' } }),
+                          h('strong', { style: { fontSize: '12px' } }, colorName)
+                        ),
+                        h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '6px' } },
+                          sizes ? sizes.map(function (s, si) {
+                            var stock = s.get('stock');
+                            var label = s.get('label');
+                            var oos = stock === 0;
+                            return h('span', {
+                              key: si,
+                              style: {
+                                fontSize: '11px', fontWeight: '700', padding: '4px 9px', borderRadius: '999px',
+                                background: oos ? '#fbe9ea' : '#F3E2D6',
+                                color: oos ? '#c0392b' : '#4A0E1F',
+                                textDecoration: oos ? 'line-through' : 'none'
+                              }
+                            }, label + ' (' + stock + ')');
+                          }) : null
+                        )
+                      );
+                    })
+                  ) : null
+                )
+              );
+            })
+          )
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('products', ProductsPreview);
+
+    /* ---- Vista previa: Testimonios ---- */
+    var TestimonialsPreview = createClass({
+      render: function () {
+        var items = this.props.widgetsFor('testimonials') || [];
+        return h('div', { className: 'preview-wrap' },
+          h('h1', {}, 'Testimonios — así se ven en la web'),
+          items.map(function (item, i) {
+            return h('div', { className: 'preview-testi', key: i },
+              h('div', { className: 'stars' }, '★★★★★'),
+              h('p', {}, '"' + (item.getIn(['data', 'text']) || '') + '"'),
+              h('strong', {}, '— ' + (item.getIn(['data', 'name']) || ''))
+            );
+          })
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('testimonials', TestimonialsPreview);
+
+    /* ---- Vista previa: Preguntas frecuentes ---- */
+    var FaqPreview = createClass({
+      render: function () {
+        var items = this.props.widgetsFor('faqs') || [];
+        return h('div', { className: 'preview-wrap' },
+          h('h1', {}, 'Preguntas frecuentes — así se ven en la web'),
+          items.map(function (item, i) {
+            return h('div', { className: 'preview-faq', key: i },
+              h('h4', {}, item.getIn(['data', 'q']) || ''),
+              h('p', {}, item.getIn(['data', 'a']) || '')
+            );
+          })
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('faq', FaqPreview);
+
+    /* ---- Vista previa: Textos generales (logo, banner principal) ---- */
+    var SitePreview = createClass({
+      render: function () {
+        var entry = this.props.entry;
+        var getAsset = this.props.getAsset;
+        var logo = entry.getIn(['data', 'logoUrl']);
+        var logoAsset = logo ? getAsset(logo) : null;
+        return h('div', { className: 'preview-hero' },
+          h('div', { className: 'preview-topbar' }, entry.getIn(['data', 'topbar']) || ''),
+          h('div', { className: 'preview-hero-body' },
+            logoAsset ? h('img', { className: 'preview-logo', src: logoAsset.toString() }) : null,
+            h('p', { className: 'preview-eyebrow' }, entry.getIn(['data', 'heroEyebrow']) || ''),
+            h('h1', { className: 'preview-title' },
+              (entry.getIn(['data', 'heroTitleBefore']) || '') + ' ',
+              h('em', {}, entry.getIn(['data', 'heroTitleEm']) || ''),
+              ' ' + (entry.getIn(['data', 'heroTitleAfter']) || '')
+            ),
+            h('p', { className: 'preview-lead' }, entry.getIn(['data', 'heroLead']) || ''),
+            h('span', { className: 'preview-btn' }, 'Hablar con una asesora'),
+            h('p', { style: { marginTop: '14px', fontSize: '12px', color: '#6b5a5f' } },
+              'WhatsApp: +' + (entry.getIn(['data', 'whatsappNumber']) || '') +
+              ' · TikTok: ' + (entry.getIn(['data', 'tiktokUrl']) || '')
+            )
+          )
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('site', SitePreview);
+  </script>
+</body>
+</html>
