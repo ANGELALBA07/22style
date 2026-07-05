@@ -1,117 +1,697 @@
 {
   "products": [
     {
-      "badge": "MÁS VENDIDO",
-      "old": 109,
-      "price": 89,
-      "name": "Body Coquette Clásico",
-      "code": "BC-001",
-      "colors": [
-        "#000000",
-        "#eedfbd",
-        "#845a0f"
-      ],
-      "desc": "Body clásico de compresión suave, ideal para uso diario bajo cualquier prenda.",
-      "tag": "Más vendido",
       "id": "coquete",
-      "image": "/images/uploads/body_coquete_clasico_negro.jpg"
+      "code": "BC-001",
+      "name": "Body Coquette Clásico",
+      "tag": "Más vendido",
+      "badge": "MÁS VENDIDO",
+      "price": 89,
+      "old": 109,
+      "desc": "Body clásico de compresión suave, ideal para uso diario bajo cualquier prenda.",
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/coquete-negro.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 7
+            },
+            {
+              "label": "S",
+              "stock": 12
+            },
+            {
+              "label": "M",
+              "stock": 18
+            },
+            {
+              "label": "L",
+              "stock": 9
+            },
+            {
+              "label": "XL",
+              "stock": 4
+            }
+          ]
+        },
+        {
+          "name": "Beige",
+          "hex": "#D8B394",
+          "image": "images/products/coquete-beige.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 6
+            },
+            {
+              "label": "S",
+              "stock": 10
+            },
+            {
+              "label": "M",
+              "stock": 14
+            },
+            {
+              "label": "L",
+              "stock": 6
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Marrón",
+          "hex": "#5B3A29",
+          "image": "images/products/coquete-marron.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 5
+            },
+            {
+              "label": "S",
+              "stock": 8
+            },
+            {
+              "label": "M",
+              "stock": 11
+            },
+            {
+              "label": "L",
+              "stock": 5
+            },
+            {
+              "label": "XL",
+              "stock": 2
+            }
+          ]
+        }
+      ]
     },
     {
-      "badge": "NUEVO",
-      "old": 115,
-      "price": 95,
-      "name": "Body Suite Clásico",
-      "code": "BS-002",
-      "colors": [
-        "#000000",
-        "#e2d3b4",
-        "#6f500b"
-      ],
-      "desc": "Acabado liso y transpirable, con compresión media en abdomen y cintura.",
-      "tag": "Nuevo",
       "id": "suite",
-      "image": "/images/uploads/body_suite_clasico_marron.avif"
+      "code": "BS-002",
+      "name": "Body Suite Clásico",
+      "tag": "Nuevo",
+      "badge": "NUEVO",
+      "price": 95,
+      "old": 115,
+      "desc": "Acabado liso y transpirable, con compresión media en abdomen y cintura.",
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/suite-negro.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 9
+            },
+            {
+              "label": "S",
+              "stock": 15
+            },
+            {
+              "label": "M",
+              "stock": 20
+            },
+            {
+              "label": "L",
+              "stock": 10
+            },
+            {
+              "label": "XL",
+              "stock": 3
+            }
+          ]
+        },
+        {
+          "name": "Beige",
+          "hex": "#D8B394",
+          "image": "images/products/suite-beige.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 5
+            },
+            {
+              "label": "S",
+              "stock": 9
+            },
+            {
+              "label": "M",
+              "stock": 13
+            },
+            {
+              "label": "L",
+              "stock": 7
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Marrón",
+          "hex": "#5B3A29",
+          "image": "images/products/suite-marron.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 4
+            },
+            {
+              "label": "S",
+              "stock": 6
+            },
+            {
+              "label": "M",
+              "stock": 9
+            },
+            {
+              "label": "L",
+              "stock": 4
+            },
+            {
+              "label": "XL",
+              "stock": 1
+            }
+          ]
+        }
+      ]
     },
     {
-      "badge": "RECOMENDADO",
-      "old": 125,
-      "price": 99,
-      "name": "Body Complete Clásico",
-      "code": "BCC-003",
-      "colors": [
-        "#0c0c0c",
-        "#ddc6b2",
-        "#6a4f15"
-      ],
-      "desc": "Cobertura completa con doble forro moldeador, perfecta para looks entallados.",
-      "tag": "Recomendado",
       "id": "complete",
-      "image": "/images/uploads/boby_complete_clasico_colores.jpg"
+      "code": "BCC-003",
+      "name": "Body Complete Clásico",
+      "tag": "Recomendado",
+      "badge": "RECOMENDADO",
+      "price": 99,
+      "old": 125,
+      "desc": "Cobertura completa con doble forro moldeador, perfecta para looks entallados.",
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/complete-negro.jpg",
+          "gallery": [
+            "images/products/complete-colores.jpg"
+          ],
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 7
+            },
+            {
+              "label": "S",
+              "stock": 11
+            },
+            {
+              "label": "M",
+              "stock": 16
+            },
+            {
+              "label": "L",
+              "stock": 8
+            },
+            {
+              "label": "XL",
+              "stock": 2
+            }
+          ]
+        },
+        {
+          "name": "Beige",
+          "hex": "#D8B394",
+          "image": "images/products/complete-beige.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 4
+            },
+            {
+              "label": "S",
+              "stock": 7
+            },
+            {
+              "label": "M",
+              "stock": 10
+            },
+            {
+              "label": "L",
+              "stock": 5
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Marrón",
+          "hex": "#5B3A29",
+          "image": "images/products/complete-marron.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 3
+            },
+            {
+              "label": "S",
+              "stock": 5
+            },
+            {
+              "label": "M",
+              "stock": 8
+            },
+            {
+              "label": "L",
+              "stock": 3
+            },
+            {
+              "label": "XL",
+              "stock": 1
+            }
+          ]
+        }
+      ]
     },
     {
-      "badge": "POCO STOCK",
-      "old": 189,
-      "price": 149,
-      "name": "Body Premium Lace",
-      "code": "BPL-004",
-      "colors": [
-        "#000000",
-        "#9b5011",
-        "#a81b1b"
-      ],
-      "desc": "Diseño exclusivo en encaje con forro moldeador interior. Elegante bajo vestidos.",
-      "tag": "Edición limitada",
       "id": "lace",
-      "image": "/images/uploads/body_premium_lace_negro.avif"
+      "code": "BPL-004",
+      "name": "Body Premium Lace",
+      "tag": "Edición limitada",
+      "badge": "POCO STOCK",
+      "price": 149,
+      "old": 189,
+      "desc": "Diseño exclusivo en encaje con forro moldeador interior. Elegante bajo vestidos.",
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/lace-negro.jpg",
+          "gallery": [
+            "images/products/lace-negro-modelo.jpg"
+          ],
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 4
+            },
+            {
+              "label": "S",
+              "stock": 6
+            },
+            {
+              "label": "M",
+              "stock": 9
+            },
+            {
+              "label": "L",
+              "stock": 3
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Marrón",
+          "hex": "#5B3A29",
+          "image": "images/products/lace-marron.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 2
+            },
+            {
+              "label": "S",
+              "stock": 4
+            },
+            {
+              "label": "M",
+              "stock": 6
+            },
+            {
+              "label": "L",
+              "stock": 2
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Vino",
+          "hex": "#5E1B29",
+          "image": "images/products/lace-vino.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 3
+            },
+            {
+              "label": "S",
+              "stock": 5
+            },
+            {
+              "label": "M",
+              "stock": 7
+            },
+            {
+              "label": "L",
+              "stock": 3
+            },
+            {
+              "label": "XL",
+              "stock": 1
+            }
+          ]
+        }
+      ]
     },
     {
-      "badge": "PREMIUM",
-      "old": 159,
-      "price": 129,
-      "name": "Body Premium Manga Corta",
-      "code": "BPMC-005",
-      "colors": [
-        "#090909",
-        "#764916",
-        "#e6dbb7"
-      ],
-      "desc": "Manga corta con compresión 360°, ideal para looks casuales y de oficina.",
-      "tag": "Premium",
       "id": "mangacorta",
-      "image": "/images/uploads/body_premium_manga-corta_marron.avif"
-    },
-    {
-      "badge": "-15%",
+      "code": "BPMC-005",
+      "name": "Body Premium Manga Corta",
+      "tag": "Premium",
+      "badge": "PREMIUM",
+      "price": 129,
       "old": 159,
-      "price": 135,
-      "name": "Body Premium Manga Larga",
-      "code": "BPML-006",
+      "desc": "Manga corta con compresión 360°, ideal para looks casuales y de oficina.",
       "colors": [
-        "#000000",
-        "#9f2424"
-      ],
-      "desc": "Manga larga con compresión firme, perfecto para climas fríos y uso prolongado.",
-      "tag": "Abrigado",
-      "id": "mangalarga",
-      "image": "/images/uploads/mody_premium_manga-larga_negro.avif"
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/mangacorta-negro.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 6
+            },
+            {
+              "label": "S",
+              "stock": 10
+            },
+            {
+              "label": "M",
+              "stock": 14
+            },
+            {
+              "label": "L",
+              "stock": 6
+            },
+            {
+              "label": "XL",
+              "stock": 2
+            }
+          ]
+        },
+        {
+          "name": "Marrón",
+          "hex": "#5B3A29",
+          "image": "images/products/mangacorta-marron.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 4
+            },
+            {
+              "label": "S",
+              "stock": 7
+            },
+            {
+              "label": "M",
+              "stock": 9
+            },
+            {
+              "label": "L",
+              "stock": 4
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Perla",
+          "hex": "#E7DCCB",
+          "image": "images/products/mangacorta-perla.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 5
+            },
+            {
+              "label": "S",
+              "stock": 8
+            },
+            {
+              "label": "M",
+              "stock": 10
+            },
+            {
+              "label": "L",
+              "stock": 5
+            },
+            {
+              "label": "XL",
+              "stock": 1
+            }
+          ]
+        }
+      ]
     },
     {
-      "badge": "EXCLUSIVO",
-      "old": 149,
-      "price": 119,
-      "name": "Body Zypper Cierre Frontal",
-      "code": "BZ-007",
+      "id": "mangalarga",
+      "code": "BPML-006",
+      "name": "Body Premium Manga Larga",
+      "tag": "Abrigado",
+      "badge": "-15%",
+      "price": 135,
+      "old": 159,
+      "desc": "Manga larga con compresión firme, perfecto para climas fríos y uso prolongado.",
       "colors": [
-        "#000000",
-        "#5c360a",
-        "#ff0002",
-        "#efe1ad",
-        "#dd6bbd"
-      ],
-      "desc": "Cierre frontal de fácil acceso, con compresión moldeadora y acabado premium.",
-      "tag": "Exclusivo",
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/mangalarga-negro.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 5
+            },
+            {
+              "label": "S",
+              "stock": 9
+            },
+            {
+              "label": "M",
+              "stock": 12
+            },
+            {
+              "label": "L",
+              "stock": 5
+            },
+            {
+              "label": "XL",
+              "stock": 2
+            }
+          ]
+        },
+        {
+          "name": "Vino",
+          "hex": "#5E1B29",
+          "image": "images/products/mangalarga-vino.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 4
+            },
+            {
+              "label": "S",
+              "stock": 6
+            },
+            {
+              "label": "M",
+              "stock": 8
+            },
+            {
+              "label": "L",
+              "stock": 3
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "zypper",
-      "image": "/images/uploads/zypper_negro.avif"
+      "code": "BZ-007",
+      "name": "Body Zypper Cierre Frontal",
+      "tag": "Exclusivo",
+      "badge": "EXCLUSIVO",
+      "price": 119,
+      "old": 149,
+      "desc": "Cierre frontal de fácil acceso, con compresión moldeadora y acabado premium.",
+      "colors": [
+        {
+          "name": "Negro",
+          "hex": "#1c1414",
+          "image": "images/products/zypper-negro.jpg",
+          "gallery": [
+            "images/products/zypper-principal.jpg"
+          ],
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 8
+            },
+            {
+              "label": "S",
+              "stock": 14
+            },
+            {
+              "label": "M",
+              "stock": 19
+            },
+            {
+              "label": "L",
+              "stock": 8
+            },
+            {
+              "label": "XL",
+              "stock": 3
+            }
+          ]
+        },
+        {
+          "name": "Beige",
+          "hex": "#D8B394",
+          "image": "images/products/zypper-beige.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 5
+            },
+            {
+              "label": "S",
+              "stock": 8
+            },
+            {
+              "label": "M",
+              "stock": 11
+            },
+            {
+              "label": "L",
+              "stock": 5
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Magenta",
+          "hex": "#B23368",
+          "image": "images/products/zypper-magenta.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 3
+            },
+            {
+              "label": "S",
+              "stock": 5
+            },
+            {
+              "label": "M",
+              "stock": 7
+            },
+            {
+              "label": "L",
+              "stock": 3
+            },
+            {
+              "label": "XL",
+              "stock": 0
+            }
+          ]
+        },
+        {
+          "name": "Marrón",
+          "hex": "#5B3A29",
+          "image": "images/products/zypper-marron.jpg",
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 4
+            },
+            {
+              "label": "S",
+              "stock": 6
+            },
+            {
+              "label": "M",
+              "stock": 8
+            },
+            {
+              "label": "L",
+              "stock": 4
+            },
+            {
+              "label": "XL",
+              "stock": 1
+            }
+          ]
+        },
+        {
+          "name": "Rojo",
+          "hex": "#B0201F",
+          "image": "images/products/zypper-rojo.jpg",
+          "gallery": [
+            "images/products/zypper-rojo-2.jpg",
+            "images/products/zypper-rojo-3.jpg",
+            "images/products/zypper-rojo-detalle.jpg",
+            "images/products/zypper-rojo-detalle-2.jpg"
+          ],
+          "sizes": [
+            {
+              "label": "XS",
+              "stock": 5
+            },
+            {
+              "label": "S",
+              "stock": 9
+            },
+            {
+              "label": "M",
+              "stock": 12
+            },
+            {
+              "label": "L",
+              "stock": 6
+            },
+            {
+              "label": "XL",
+              "stock": 2
+            }
+          ]
+        }
+      ]
     }
   ]
 }
