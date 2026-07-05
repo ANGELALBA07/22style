@@ -1,9 +1,0 @@
-{
-  "faqs": [
-    {"q": "¿Qué métodos de pago aceptan?", "a": "Tarjeta de crédito o débito, Yape, Plin, transferencia y pago contraentrega en Lima."},
-    {"q": "¿El envío tiene costo?", "a": "El envío es gratuito a partir de 2 unidades. Para 1 unidad, el costo se calcula en el checkout."},
-    {"q": "¿Cuánto tarda la entrega?", "a": "En Lima, menos de 24 horas. En provincia, de 1 a 2 días útiles."},
-    {"q": "¿Puedo cambiar la talla si no me queda?", "a": "Sí, tienes 60 días de garantía para cambios por talla o defectos de fábrica."},
-    {"q": "¿La compra es segura?", "a": "Sí, tus datos de pago se procesan de forma encriptada y nunca se almacenan en nuestros servidores."}
-  ]
-}
