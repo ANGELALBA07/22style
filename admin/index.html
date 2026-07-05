@@ -30,7 +30,7 @@
       "h1,h2,h3,h4{font-family:'Fraunces',serif; color:#4A0E1F; margin:0 0 8px;}" +
       ".preview-wrap{padding:24px;}" +
       ".preview-wrap h1{font-size:22px; margin-bottom:20px;}" +
-      ".preview-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:18px;}" +
+      ".preview-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px;}" +
       ".preview-card{background:#fff; border:1px solid rgba(74,14,31,0.14); overflow:hidden;}" +
       ".preview-card img{width:100%; aspect-ratio:4/5; object-fit:cover; display:block;}" +
       ".preview-noimg{width:100%; aspect-ratio:4/5; background:#F3E2D6; display:flex; align-items:center; justify-content:center; font-size:32px;}" +
@@ -58,7 +58,7 @@
 
     CMS.registerPreviewStyle(PALETTE_CSS, { raw: true });
 
-    /* ---- Vista previa: Productos ---- */
+    /* ---- Vista previa: Productos (foto principal + color + talla/stock) ---- */
     var ProductsPreview = createClass({
       render: function () {
         var getAsset = this.props.getAsset;
@@ -67,24 +67,57 @@
           h('h1', {}, 'Catálogo — así se ve en la web'),
           h('div', { className: 'preview-grid' },
             items.map(function (item, i) {
-              var image = item.getIn(['data', 'image']);
-              var asset = image ? getAsset(image) : null;
-              var badge = item.getIn(['data', 'badge']) || '';
+              var code = item.getIn(['data', 'code']) || '';
               var name = item.getIn(['data', 'name']) || '';
               var price = item.getIn(['data', 'price']);
               var old = item.getIn(['data', 'old']);
-              var desc = item.getIn(['data', 'desc']) || '';
+              var badge = item.getIn(['data', 'badge']) || '';
+              var colors = item.getIn(['data', 'colors']);
+              var firstImage = colors && colors.size ? colors.getIn([0, 'image']) : null;
+              var asset = firstImage ? getAsset(firstImage) : null;
+
               return h('div', { className: 'preview-card', key: i },
                 asset
                   ? h('img', { src: asset.toString() })
                   : h('div', { className: 'preview-noimg' }, '📷 Sin foto'),
-                badge ? h('span', { className: 'preview-badge' }, badge) : null,
-                h('h3', {}, name),
-                h('div', { className: 'preview-price' },
-                  h('span', { className: 'now' }, price != null ? 'S/. ' + price : ''),
-                  old ? h('span', { className: 'old' }, 'S/. ' + old) : null
-                ),
-                h('p', { className: 'preview-desc' }, desc)
+                h('div', { style: { padding: '12px' } },
+                  badge ? h('span', { className: 'preview-badge', style: { margin: '0 0 8px' } }, badge) : null,
+                  h('div', { style: { fontSize: '11px', color: '#6b5a5f', fontFamily: 'monospace', marginTop: '4px' } }, code),
+                  h('h3', { style: { margin: '2px 0 6px' } }, name),
+                  h('div', { className: 'preview-price' },
+                    h('span', { className: 'now' }, price != null ? 'S/. ' + price : ''),
+                    old ? h('span', { className: 'old' }, 'S/. ' + old) : null
+                  ),
+                  colors ? h('div', { style: { marginTop: '12px', borderTop: '1px solid rgba(74,14,31,0.12)', paddingTop: '10px' } },
+                    colors.map(function (color, ci) {
+                      var colorName = color.get('name');
+                      var hex = color.get('hex');
+                      var sizes = color.get('sizes');
+                      return h('div', { key: ci, style: { marginBottom: '10px' } },
+                        h('div', { style: { display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' } },
+                          h('span', { style: { width: '13px', height: '13px', borderRadius: '50%', background: hex, display: 'inline-block', border: '1px solid rgba(0,0,0,0.2)' } }),
+                          h('strong', { style: { fontSize: '12px' } }, colorName)
+                        ),
+                        h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '6px' } },
+                          sizes ? sizes.map(function (s, si) {
+                            var stock = s.get('stock');
+                            var label = s.get('label');
+                            var oos = stock === 0;
+                            return h('span', {
+                              key: si,
+                              style: {
+                                fontSize: '11px', fontWeight: '700', padding: '4px 9px', borderRadius: '999px',
+                                background: oos ? '#fbe9ea' : '#F3E2D6',
+                                color: oos ? '#c0392b' : '#4A0E1F',
+                                textDecoration: oos ? 'line-through' : 'none'
+                              }
+                            }, label + ' (' + stock + ')');
+                          }) : null
+                        )
+                      );
+                    })
+                  ) : null
+                )
               );
             })
           )

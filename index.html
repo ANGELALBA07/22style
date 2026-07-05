@@ -388,6 +388,35 @@
   .logo img{height:34px; width:auto; display:block;}
   @media (max-width:640px){.logo img{height:28px;}}
 
+  .card-body .code{font-size:11px; letter-spacing:0.04em; color:var(--ink-soft); font-family:'Manrope',sans-serif; opacity:0.8;}
+  .gallery-thumbs{display:flex; gap:6px; padding:8px 20px 0;}
+  .gallery-thumbs img{width:38px; height:38px; object-fit:cover; border:1.5px solid transparent; cursor:pointer; opacity:0.75; transition:all .15s ease;}
+  .gallery-thumbs img.active{border-color:var(--merlot); opacity:1;}
+  .gallery-thumbs img:hover{opacity:1;}
+
+  .swatches-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .swatch-btn{
+    width:24px; height:24px; border-radius:50%; border:2px solid #fff;
+    box-shadow:0 0 0 1.5px rgba(36,19,24,0.25);
+    cursor:pointer; padding:0; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .swatch-btn:hover{transform:scale(1.1);}
+  .swatch-btn.active{box-shadow:0 0 0 2px var(--merlot);}
+  .color-name{font-size:12px; color:var(--ink-soft); font-weight:700; margin-top:6px;}
+
+  .size-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:12px;}
+  .size-chip{
+    border:1.5px solid var(--line); background:#fff; color:var(--ink);
+    padding:6px 10px; font-size:11px; font-weight:700; cursor:pointer;
+    transition:all .15s ease;
+  }
+  .size-chip:hover:not(:disabled){border-color:var(--merlot);}
+  .size-chip.active{background:var(--merlot); border-color:var(--merlot); color:#fff;}
+  .size-chip:disabled{
+    background:#fbe9ea; border-color:#f2c9cc; color:#c98d92;
+    cursor:not-allowed; text-decoration:line-through;
+  }
+
   .wa-float{
     position:fixed; right:22px; bottom:22px; z-index:110;
     width:58px; height:58px; border-radius:50%;
@@ -696,8 +725,7 @@
    El sitio lee el catálogo desde data/products.json, el archivo que edita
    el panel en /admin (login con Netlify Identity). Si ese archivo no existe
    aún (por ejemplo, abriendo el HTML localmente), se usa el catálogo de
-   respaldo definido más abajo, o una Google Sheet si la configuras aquí: */
-const SHEET_CSV_URL = ""; // opcional: alternativa sin panel, ver instrucciones al final
+   respaldo (vacío) definido más abajo. */
 
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", user => {
@@ -707,18 +735,11 @@ if (window.netlifyIdentity) {
   });
 }
 
-/* ============ DATA (se usa si no hay Sheet conectada, o si falla la carga) ============ */
-const DEFAULT_PRODUCTS = [
-  {id:'p1', name:'Faja Body Reloj de Arena', tag:'Más vendido', badge:'MÁS VENDIDO', price:129, old:169, colors:['#241318','#C9A27A'], desc:'Compresión alta en abdomen y cintura.', image:''},
-  {id:'p2', name:'Cinturilla Extreme Doble Capa', tag:'Nuevo', badge:'NUEVO', price:89, old:112, colors:['#241318'], desc:'Doble capa para un efecto reloj de arena inmediato.', image:''},
-  {id:'p3', name:'Body Moldeador Manga Cero', tag:'Sin costuras', badge:'-30%', price:99, old:129, colors:['#241318','#8a6a52','#C9A27A'], desc:'Ultrafino, invisible bajo cualquier prenda.', image:''},
-  {id:'p4', name:'Short Faja Levanta Pompis', tag:'Premium', badge:'PREMIUM', price:95, old:120, colors:['#241318','#C9A27A'], desc:'Realza y moldea sin marcar costuras.', image:''},
-  {id:'p5', name:'Body Encaje Premium', tag:'Edición limitada', badge:'POCO STOCK', price:149, old:189, colors:['#241318'], desc:'Diseño exclusivo en encaje con forro moldeador.', image:''},
-  {id:'p6', name:'Faja Postparto Confort', tag:'Recomendado', badge:'RECOMENDADO', price:110, old:140, colors:['#241318','#8a6a52'], desc:'Soporte suave ideal para la etapa post parto.', image:''}
-];
+/* ============ DATA (se usa si data/products.json no existe todavía) ============ */
+const DEFAULT_PRODUCTS = [];
 
 const DEFAULT_SITE = {
-  logoUrl: '',
+  logoUrl: 'images/logo/logo.png',
   topbar: 'ENVÍO GRATIS DESDE 2 UNIDADES · PAGO CONTRAENTREGA EN LIMA · GARANTÍA DE 60 DÍAS',
   heroEyebrow: 'Fajas & moldeadores · Hecho para tu figura',
   heroTitleBefore: 'Siéntete',
@@ -745,29 +766,6 @@ const DEFAULT_FAQS = [
   {q:'¿Puedo cambiar la talla si no me queda?', a:'Sí, tienes 60 días de garantía para cambios por talla o defectos de fábrica.'},
   {q:'¿La compra es segura?', a:'Sí, tus datos de pago se procesan de forma encriptada y nunca se almacenan en nuestros servidores.'}
 ];
-
-/* ============ ICON per product (SVG silhouette reusing brand mark) ============ */
-function productIcon(colors){
-  const c1 = colors[0] || '#4A0E1F';
-  return `<svg viewBox="0 0 120 150" width="140">
-    <path d="M40 6 C22 24 22 52 36 64 C46 72 46 82 36 90 C20 102 20 130 40 148" stroke="${c1}" stroke-width="3" fill="none"/>
-    <path d="M80 6 C98 24 98 52 84 64 C74 72 74 82 84 90 C100 102 100 130 80 148" stroke="${c1}" stroke-width="3" fill="none"/>
-    <line x1="34" y1="56" x2="86" y2="52" stroke="#B8895A" stroke-width="2"/>
-    <line x1="30" y1="68" x2="90" y2="70" stroke="#B8895A" stroke-width="2"/>
-    <line x1="30" y1="82" x2="90" y2="80" stroke="#B8895A" stroke-width="2"/>
-    <line x1="34" y1="94" x2="86" y2="98" stroke="#B8895A" stroke-width="2"/>
-  </svg>`;
-}
-
-function productMedia(p){
-  if(p.image){
-    return `<img src="${p.image}" alt="${p.name}" loading="lazy"
-      style="width:100%;height:100%;object-fit:cover;"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">${productIcon(p.colors)}</div>`;
-  }
-  return productIcon(p.colors);
-}
 
 /* ============ SITE CONTENT LOADERS (hero, topbar, whatsapp, testimonios, faq) ============ */
 let SITE_DATA = DEFAULT_SITE;
@@ -812,9 +810,21 @@ async function loadSiteContent(){
   const faqData = await loadJson('data/faq.json');
   renderFaqs((faqData && faqData.faqs) || DEFAULT_FAQS);
 }
-let cart = []; // {id, qty}
 
-function money(n){ return 'S/. ' + n.toFixed(2); }
+/* cart line = {id, colorIndex, size, qty} */
+let cart = [];
+
+function money(n){ return 'S/. ' + Number(n).toFixed(2); }
+
+/* estado de selección de color/talla/foto por tarjeta, mientras se navega el catálogo */
+let cardState = {}; // { [productId]: { colorIndex, size, previewImage } }
+
+function getCardState(p){
+  if(!cardState[p.id]){
+    cardState[p.id] = { colorIndex: 0, size: null, previewImage: p.colors[0].image };
+  }
+  return cardState[p.id];
+}
 
 /* ============ RENDER PRODUCTS ============ */
 let PRODUCTS = DEFAULT_PRODUCTS;
@@ -823,24 +833,39 @@ const grid = document.getElementById('productGrid');
 function renderProducts(){
   grid.innerHTML = '';
   PRODUCTS.forEach(p=>{
+    const state = getCardState(p);
+    const color = p.colors[state.colorIndex];
     const save = (p.old - p.price).toFixed(0);
+    const gallery = [color.image, ...(color.gallery || [])];
+
     const card = document.createElement('div');
     card.className = 'card-product';
+    card.dataset.id = p.id;
     card.innerHTML = `
       <div class="card-media">
-        <span class="badge ${p.badge==='PREMIUM'||p.badge==='RECOMENDADO' ? 'gold':''}">${p.badge}</span>
-        ${productMedia(p)}
+        <span class="badge ${p.badge==='PREMIUM'||p.badge==='RECOMENDADO'||p.badge==='EXCLUSIVO' ? 'gold':''}">${p.badge}</span>
+        <img src="${state.previewImage}" alt="${p.name} — ${color.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
       </div>
+      ${gallery.length>1 ? `<div class="gallery-thumbs">${gallery.map(g=>`<img src="${g}" data-action="preview" data-src="${g}" class="${g===state.previewImage?'active':''}">`).join('')}</div>` : ''}
       <div class="card-body">
-        <span class="tag">${p.tag}</span>
+        <span class="tag code">${p.code} · ${p.tag}</span>
         <h3>${p.name}</h3>
         <div class="price-row">
           <span class="price-now">${money(p.price)}</span>
           <span class="price-old">${money(p.old)}</span>
         </div>
         <span class="save-tag">Ahorras S/. ${save}</span>
-        <div class="swatches">${p.colors.map(c=>`<span class="swatch" style="background:${c}"></span>`).join('')}</div>
-        <button class="add-btn" data-id="${p.id}">Agregar al carrito</button>
+
+        <div class="swatches-row">
+          ${p.colors.map((c,ci)=>`<button type="button" class="swatch-btn ${ci===state.colorIndex?'active':''}" data-action="color" data-color="${ci}" style="background:${c.hex}" title="${c.name}" aria-label="Color ${c.name}"></button>`).join('')}
+        </div>
+        <div class="color-name">${color.name}</div>
+
+        <div class="size-row">
+          ${color.sizes.map(s=>`<button type="button" class="size-chip ${state.size===s.label?'active':''}" data-action="size" data-size="${s.label}" ${s.stock===0?'disabled':''}>${s.label} (${s.stock})</button>`).join('')}
+        </div>
+
+        <button class="add-btn" data-action="add">Agregar al carrito</button>
       </div>
     `;
     grid.appendChild(card);
@@ -848,63 +873,41 @@ function renderProducts(){
 }
 
 grid.addEventListener('click', e=>{
-  const btn = e.target.closest('.add-btn');
-  if(!btn) return;
-  addToCart(btn.dataset.id);
+  const card = e.target.closest('.card-product');
+  if(!card) return;
+  const p = PRODUCTS.find(pp=>pp.id===card.dataset.id);
+  if(!p) return;
+  const state = getCardState(p);
+  const actionEl = e.target.closest('[data-action]');
+  if(!actionEl) return;
+
+  const action = actionEl.dataset.action;
+  if(action==='color'){
+    state.colorIndex = parseInt(actionEl.dataset.color, 10);
+    state.size = null;
+    state.previewImage = p.colors[state.colorIndex].image;
+    renderProducts();
+  } else if(action==='size'){
+    if(actionEl.disabled) return;
+    state.size = actionEl.dataset.size;
+    renderProducts();
+  } else if(action==='preview'){
+    state.previewImage = actionEl.dataset.src;
+    renderProducts();
+  } else if(action==='add'){
+    if(!state.size){
+      showToast('Elige una talla antes de agregar');
+      return;
+    }
+    addToCart(p.id, state.colorIndex, state.size);
+  }
 });
 
-/* Carga el catálogo: 1) data/products.json (panel de edición), 2) Google Sheet
-   si está configurada, 3) catálogo de respaldo. Columnas/campos esperados:
-   id, name, tag, badge, price, old, colors (lista), desc, image */
+/* Carga el catálogo desde data/products.json (lo edita el panel /admin) */
 async function loadCatalog(){
-  try{
-    const res = await fetch('data/products.json', {cache:'no-store'});
-    if(res.ok){
-      const data = await res.json();
-      const list = Array.isArray(data) ? data : data.products;
-      if(Array.isArray(list) && list.length){
-        PRODUCTS = list;
-        renderProducts();
-        return;
-      }
-    }
-  }catch(err){ /* archivo no disponible todavía, seguimos con el siguiente método */ }
-
-  if(SHEET_CSV_URL){
-    Papa.parse(SHEET_CSV_URL, {
-      download:true,
-      header:true,
-      skipEmptyLines:true,
-      complete: function(results){
-        try{
-          const rows = results.data.map(r=>({
-            id: r.id && r.id.trim(),
-            name: r.name && r.name.trim(),
-            tag: r.tag && r.tag.trim(),
-            badge: r.badge && r.badge.trim(),
-            price: parseFloat(r.price),
-            old: parseFloat(r.old),
-            colors: (r.colors || '#241318').split(';').map(c=>c.trim()),
-            desc: r.desc && r.desc.trim(),
-            image: r.image && r.image.trim()
-          })).filter(r=>r.id && !isNaN(r.price));
-          PRODUCTS = rows.length ? rows : DEFAULT_PRODUCTS;
-        }catch(err){
-          console.error('Error leyendo la hoja, usando catálogo por defecto', err);
-          PRODUCTS = DEFAULT_PRODUCTS;
-        }
-        renderProducts();
-      },
-      error: function(err){
-        console.error('No se pudo cargar la hoja, usando catálogo por defecto', err);
-        PRODUCTS = DEFAULT_PRODUCTS;
-        renderProducts();
-      }
-    });
-    return;
-  }
-
-  PRODUCTS = DEFAULT_PRODUCTS;
+  const data = await loadJson('data/products.json');
+  const list = data && (Array.isArray(data) ? data : data.products);
+  PRODUCTS = (Array.isArray(list) && list.length) ? list : DEFAULT_PRODUCTS;
   renderProducts();
 }
 
@@ -951,25 +954,28 @@ function renderFaqs(list){
   });
 }
 
-/* ============ CART LOGIC ============ */
-function addToCart(id){
-  const line = cart.find(l=>l.id===id);
-  if(line){ line.qty++; } else { cart.push({id, qty:1}); }
+/* ============ CART LOGIC (cada línea = producto + color + talla) ============ */
+function lineKey(id, colorIndex, size){ return `${id}__${colorIndex}__${size}`; }
+
+function addToCart(id, colorIndex, size){
+  const key = lineKey(id, colorIndex, size);
+  const line = cart.find(l=>lineKey(l.id,l.colorIndex,l.size)===key);
+  if(line){ line.qty++; } else { cart.push({id, colorIndex, size, qty:1}); }
   renderCart();
   showToast('Agregado al carrito ✓');
   openDrawer();
 }
 
-function changeQty(id, delta){
-  const line = cart.find(l=>l.id===id);
+function changeQty(key, delta){
+  const line = cart.find(l=>lineKey(l.id,l.colorIndex,l.size)===key);
   if(!line) return;
   line.qty += delta;
-  if(line.qty<=0){ cart = cart.filter(l=>l.id!==id); }
+  if(line.qty<=0){ cart = cart.filter(l=>lineKey(l.id,l.colorIndex,l.size)!==key); }
   renderCart();
 }
 
-function removeLine(id){
-  cart = cart.filter(l=>l.id!==id);
+function removeLine(key){
+  cart = cart.filter(l=>lineKey(l.id,l.colorIndex,l.size)!==key);
   renderCart();
 }
 
@@ -992,12 +998,15 @@ function renderCart(){
   } else {
     wrap.innerHTML = cart.map(l=>{
       const p = PRODUCTS.find(pp=>pp.id===l.id);
+      if(!p) return '';
+      const color = p.colors[l.colorIndex];
+      const key = lineKey(l.id, l.colorIndex, l.size);
       return `
-      <div class="cart-line" data-id="${p.id}">
-        <div class="cart-thumb">${productMedia(p)}</div>
+      <div class="cart-line" data-key="${key}">
+        <div class="cart-thumb"><img src="${color.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;"></div>
         <div class="cart-line-info">
           <h4>${p.name}</h4>
-          <div class="var">${money(p.price)} c/u</div>
+          <div class="var">${color.name} · Talla ${l.size} · ${money(p.price)} c/u</div>
           <div class="qty-row">
             <button class="qty-btn" data-action="minus">−</button>
             <span>${l.qty}</span>
@@ -1024,11 +1033,11 @@ function renderCart(){
 document.getElementById('drawerItems').addEventListener('click', e=>{
   const line = e.target.closest('.cart-line');
   if(!line) return;
-  const id = line.dataset.id;
+  const key = line.dataset.key;
   const action = e.target.dataset.action;
-  if(action==='plus') changeQty(id, 1);
-  if(action==='minus') changeQty(id, -1);
-  if(action==='remove') removeLine(id);
+  if(action==='plus') changeQty(key, 1);
+  if(action==='minus') changeQty(key, -1);
+  if(action==='remove') removeLine(key);
 });
 
 /* ============ DRAWER OPEN/CLOSE ============ */

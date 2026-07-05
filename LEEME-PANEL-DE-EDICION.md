@@ -1,75 +1,57 @@
-# Cómo activar tu portal de edición — 22 Style
+# 22 Style — Tienda con fotos reales, color y talla
 
-Este paquete incluye tu tienda (`index.html`) más un panel de edición en
-`/admin` donde puedes cambiar productos, precios, textos y fotos con
-formularios, sin tocar código.
+Esta versión reemplaza COMPLETAMENTE la anterior: ya tiene tus 7 productos
+reales, fotos optimizadas, tu logo, y selector de color + talla con stock.
+
+## Qué cambió
+- **7 productos reales** cargados con sus fotos: Body Coquette, Body Suite,
+  Body Complete, Body Premium Lace, Body Premium Manga Corta, Body Premium
+  Manga Larga y Body Zypper (cierre frontal).
+- **Selector de color**: cada producto muestra sus colores reales como
+  círculos de color; al tocar uno, cambia la foto principal.
+- **Selector de talla con stock**: S / M / L / XL, cada uno mostrando las
+  unidades disponibles. Las tallas agotadas aparecen tachadas y no se pueden
+  elegir.
+- **Fotos adicionales**: los productos que tenían más de una foto (detalle,
+  con modelo, etc.) muestran una fila de miniaturas para verlas todas.
+- **Logo real** ya cargado (`images/logo/logo.png`), visible en el header y
+  el footer desde el primer momento.
+- El carrito y el checkout ahora recuerdan el color y la talla elegidos.
 
 ## Qué hay en esta carpeta
 - `index.html` → tu tienda
-- `data/products.json` → el catálogo (lo edita el panel automáticamente)
+- `images/products/` → todas las fotos de producto, ya optimizadas
+- `images/logo/logo.png` → tu logo real
+- `data/products.json` → el catálogo completo (colores, tallas, stock, fotos)
 - `data/site.json` → textos del banner principal, WhatsApp y TikTok
 - `data/testimonials.json` → opiniones de clientas
 - `data/faq.json` → preguntas frecuentes
 - `admin/index.html` y `admin/config.yml` → el panel de edición
-- `images/uploads/` → aquí se guardan las fotos que subas desde el panel
+- `images/uploads/` → aquí se guardan las fotos nuevas que subas desde el panel
 
-Dentro del panel (`/admin`) vas a ver 4 secciones en el menú:
-🏠 Textos generales · 🛍️ Productos · 💬 Testimonios · ❓ Preguntas frecuentes
+## Panel de edición — cómo se ve ahora
+Dentro de "🛍️ Productos", cada producto se abre mostrando:
+1. La **foto principal** de cada color (arriba, bien grande)
+2. Un color con su **paleta visual** (tocas el cuadrito y eliges el tono)
+3. Las **tallas y su stock**, con un menú desplegable para la talla y un
+   número para el stock disponible
+4. Un espacio para **fotos adicionales** de ese color (detalle, con modelo, etc.)
 
-En "🏠 Textos generales" ahora también puedes:
-- Subir tu **logo real** (reemplaza el logo de texto en el header y el footer)
-- Configurar tu **número de WhatsApp**: se usa automáticamente en el botón
-  "Hablar con una asesora", en el botón flotante de WhatsApp (esquina inferior
-  derecha, visible en toda la web) y en el aviso de pago por Yape/Plin del checkout.
-  Cambiar el número una sola vez actualiza los 3 lugares a la vez.
+A la derecha, la **vista previa en vivo** muestra el producto tal cual se ve
+en la web: foto, precio, y cada color con sus tallas — las agotadas se ven
+en rosado y tachadas, igual que en la tienda real.
 
-## Vista previa en vivo
-Al editar cualquier producto, testimonio o pregunta, vas a ver a la derecha
-una vista previa que se parece a como se ve realmente en tu web (con foto,
-colores, precios tachados, etc.) — no solo texto plano. Se actualiza mientras
-escribes.
+## Cómo subir esto a tu repositorio (reemplaza todo lo anterior)
+1. Borra el contenido actual de tu repositorio en GitHub (o crea uno nuevo).
+2. Sube **todo** el contenido de esta carpeta tal cual está (respetando las
+   subcarpetas `images/`, `data/`, `admin/`).
+3. Espera 1-2 minutos a que Netlify vuelva a publicar.
+4. Entra a `tuweb.netlify.app/admin` con Ctrl+Shift+R (refresco sin caché)
+   para confirmar que ves las 4 secciones y el nuevo editor de productos.
 
-## Editor de productos más visual
-- Cada producto aparece **abierto de una vez** (no hay que hacer clic para
-  expandirlo), y lo primero que ves es la **foto**.
-- Los colores ahora se eligen con un **selector visual de paleta** — tocas
-  el cuadrito de color y eliges de una rueda de colores, ya no escribes
-  códigos hexadecimales a mano.
-- En la lista de productos colapsada, cada uno muestra "sello · nombre — precio"
-  para identificarlos rápido.
-
-## Pasos para activarlo (una sola vez)
-
-1. **Sube esta carpeta a GitHub**
-   - Crea una cuenta en https://github.com si no tienes.
-   - Crea un repositorio nuevo y sube todos estos archivos y carpetas tal cual están.
-
-2. **Conecta el repositorio a Netlify**
-   - Entra a https://app.netlify.com
-   - "Add new site" → "Import an existing project" → elige GitHub → selecciona tu repositorio.
-   - Déjalo publicar con la configuración por defecto (no hace falta build command).
-
-3. **Activa el login (Netlify Identity)**
-   - En el panel de tu sitio en Netlify: `Site settings` → `Identity` → `Enable Identity`.
-
-4. **Activa Git Gateway** (permite que el panel guarde los cambios)
-   - Dentro de `Identity` → `Services` → `Git Gateway` → `Enable Git Gateway`.
-
-5. **Invítate como usuaria**
-   - En `Identity` → `Invite users` → escribe tu correo.
-   - Te llega un email de Netlify: ábrelo y crea tu contraseña.
-
-6. **Entra a tu panel**
-   - Ve a `https://tu-sitio.netlify.app/admin`
-   - Inicia sesión con tu correo y contraseña.
-   - Ahí puedes: editar nombre, precio, precio anterior, descripción, color
-     y foto de cada producto (la foto se sube arrastrándola, directo desde tu celular o PC).
-
-7. Cada vez que guardes un cambio en el panel, tu tienda se actualiza sola
-   en uno o dos minutos.
-
-## Alternativa más simple (sin GitHub)
-Si prefieres no usar GitHub, puedes conectar la tienda a una Google Sheet en
-su lugar (más simple de configurar, pero sin login ni subida directa de fotos).
-Esa opción está explicada dentro de `index.html`, al final del `<script>`,
-en la constante `SHEET_CSV_URL`.
+## Pendiente (opcional)
+Tenías también una imagen de "efectos del producto" en chino/inglés para
+traducir al español — no la incluí en esta versión porque es un gráfico con
+texto superpuesto (no un simple texto), y reconstruirla con precisión requiere
+que me compartas el texto exacto que quieres en cada etiqueta. Si me lo
+mandas, te armo una sección de "beneficios" en español con ese contenido.
